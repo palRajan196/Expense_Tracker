@@ -1,0 +1,147 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  background-color: #e4e0e0;
+  color: black;
+  font-family: "Google Sans", sans-serif;
+}
+
+#Heading{
+  text-align: center;
+}
+
+#addUserSection{
+  color: black;
+  margin-left: 5vw;
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+}
+
+#addUserSectionInput input{
+  border: none;
+  height: 25px;
+  border-radius: 2px;
+  padding-left: 10px;
+  background-color: #fff;
+  border: 1.5px solid rgb(190, 189, 189);
+}
+
+#addUserSectionInput input:focus{
+  
+  outline: none;
+}
+
+input{
+  border: none;
+  height: 25px;
+  border-radius: 2px;
+  padding-left: 10px;
+  background-color: #fff;
+  border: 1.5px solid rgb(190, 189, 189);
+}
+button{
+  background-color: rgb(68, 68, 248);
+  color: white;
+  border-radius: 5px;
+  border: none;
+  padding: 5px 10px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+input:focus{
+  outline: none;
+}
+
+#addUserSectionInput button{
+  background-color: rgb(68, 68, 248);
+  color: white;
+  border-radius: 5px;
+  border: none;
+  padding: 5px 10px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+#editButton{
+  background-color: orange;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  padding: 5px 20px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+#addUserSectionInput button:hover{
+  cursor: pointer;
+}
+
+#inputField{
+  margin:30px 0;
+  padding-left: 5vw;
+  width: 100vw;
+}
+#formSection{
+  margin: 10px 0;
+}
+
+
+
+.styled-table{
+  margin: 20px 0;
+  padding: 10px 30px;
+  width: 80vw;
+  border-collapse: collapse;
+}
+.styled-table thead th{
+  background-color: #c4c2c2;
+}
+.styled-table tbody tr td{
+  background-color: #f9f5f5;
+  height: 30px;
+  padding:0 10px;
+  border-bottom: 1px solid rgb(206, 205, 205);
+}
+.styled-table tbody tr:nth-child(even) {
+  background-color: #cccbcb;
+}
+
+
+#Table{
+  width: 100vw;
+  height: 100%;
+  padding: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#clearAll{
+  margin-left: 5vw;
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+
+#calculation{
+  padding-left: 5vw;
+}
+#userName{
+  font-weight: 700;
+}
+#result{
+  margin: 10px 20px;
+  background-color:rgb(133, 31, 31);
+}
+#userPositive{
+  color: green;
+  font-weight: 500;
+}
+#userNegative{
+  color: red;
+  font-weight: 500;
+}
