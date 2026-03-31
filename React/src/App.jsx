@@ -26,6 +26,8 @@ function App() {
   const [addExpensebutton, setAddExpensebutton] = useState(Boolean);
   const [addEditButton, setAddEditButton] = useState(Boolean);
   const [editId, setEditId] = useState("");
+  const [expenseButton, setExpensesButton] = useState("Add Expense");
+  const [editButton, setEditbutton] = useState("Edit");
 
   const fetchData = async () => {
     const u = await fetch(`${Backend_URL}/user`);
@@ -68,6 +70,7 @@ function App() {
 
   const addExpense = async () => {
     try{
+      setExpensesButton("Adding ...");
        setAddExpensebutton(true);
   const addExpen = await fetch(`${Backend_URL}/expense`, {
       method: "POST",
@@ -81,6 +84,7 @@ function App() {
         paidBy,
       }),
     });
+    setExpensesButton("Add Expense");
     alert("Expense is added sucessful");
     }
       catch(err){
@@ -105,6 +109,7 @@ function App() {
 
   const editExpense = async (id) => {
     try{
+      setEditbutton("Editting ..");
     const userId = id._id;
     const edit = await fetch(`${Backend_URL}/edit/${userId}`, {
       method: "PUT",
@@ -117,6 +122,7 @@ function App() {
       }),
     });
     const result = await edit.json();
+    setEditbutton("Edit");
     //console.log(result);
     alert("Expense is edited sucessfully");
   }
@@ -218,7 +224,7 @@ function App() {
             </select>
           </div>
           <button type="submit" disabled={addExpensebutton}>
-            Add Expense
+            {expenseButton}
           </button>
           <button
             type="button"
@@ -226,7 +232,7 @@ function App() {
             onClick={() => editExpense(editId)}
             disabled={addEditButton}
           >
-            Edit
+            {editButton}
           </button>
         </form>
       </div>
