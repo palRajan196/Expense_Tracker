@@ -69,7 +69,7 @@ app.put("/edit/:id", async (req, res) => {
 app.delete("/clear", async (req, resp) => {
   try {
     const deleteExpe = await Expense.deleteMany();
-  //  const deleteuser = await User.deleteMany();
+    const deleteuser = await User.deleteMany();
     resp.json(deleteExpe);
   } catch (err) {
     resp.json(err);
