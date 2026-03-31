@@ -25,6 +25,7 @@
 #addUserSectionInput input{
   border: none;
   height: 25px;
+  font-size: 14px;
   border-radius: 2px;
   padding-left: 10px;
   background-color: #fff;
@@ -32,13 +33,13 @@
 }
 
 #addUserSectionInput input:focus{
-  
   outline: none;
 }
 
 input{
   border: none;
   height: 25px;
+  font-size: 14px;
   border-radius: 2px;
   padding-left: 10px;
   background-color: #fff;
@@ -47,6 +48,7 @@ input{
 button{
   background-color: rgb(68, 68, 248);
   color: white;
+  font-size: 14px;
   border-radius: 5px;
   border: none;
   padding: 5px 10px;
@@ -66,6 +68,11 @@ input:focus{
   margin-left: 20px;
   cursor: pointer;
 }
+#selectInput{
+  font-size: 14px;
+  color: black;
+  background-color: white;
+}
 
 #editButton{
   background-color: orange;
@@ -76,6 +83,7 @@ input:focus{
   margin-left: 20px;
   cursor: pointer;
 }
+
 #addUserSectionInput button:hover{
   cursor: pointer;
 }
