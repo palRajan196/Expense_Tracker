@@ -19,7 +19,7 @@ function App() {
   const [balance, setBalance] = useState({});
 
   const [name, setName] = useState("");
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState("2026-03-31");
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
   const [paidBy, setPaidBy] = useState("");
@@ -68,6 +68,7 @@ function App() {
 
   const addExpense = async () => {
     try{
+       setAddExpensebutton(true);
   const addExpen = await fetch(`${Backend_URL}/expense`, {
       method: "POST",
       headers: {
@@ -89,6 +90,7 @@ function App() {
     setTitle("");
     setAmount("");
     fetchData();
+     setAddExpensebutton(false);
   };
 
   const edit = async (data) => {

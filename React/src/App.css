@@ -25,7 +25,7 @@
 #addUserSectionInput input{
   border: none;
   height: 25px;
-  font-size: 14px;
+  font-size: 16px;
   border-radius: 2px;
   padding-left: 10px;
   background-color: #fff;
@@ -39,7 +39,7 @@
 input{
   border: none;
   height: 25px;
-  font-size: 14px;
+  font-size: 16px;
   border-radius: 2px;
   padding-left: 10px;
   background-color: #fff;
@@ -48,7 +48,7 @@ input{
 button{
   background-color: rgb(68, 68, 248);
   color: white;
-  font-size: 14px;
+  font-size: 16px;
   border-radius: 5px;
   border: none;
   padding: 5px 10px;
@@ -69,7 +69,8 @@ input:focus{
   cursor: pointer;
 }
 #selectInput{
-  font-size: 14px;
+  font-size: 16px;
+  width: 130px;
   color: black;
   background-color: white;
 }
