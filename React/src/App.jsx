@@ -2,24 +2,23 @@
 
 // App.js (Using FETCH instead of Axios)
 import "./App.css";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useOptimistic, useState } from "react";
 
 function App() {
   //  const month = new Date().getMonth();
   const AllClearPas = import.meta.env.VITE_Allclear_Pass;
   const Backend_URL = import.meta.env.VITE_Backend_URL;
-  console.log("Pass -> ", AllClearPas);
-  const mongoAtlas =
-    "mongodb+srv://palrajan196_db_user:e45d1vl2k4Ai1MMh@expense-cluster.hx0vuld.mongodb.net/";
+
   const d = new Date();
   const month = d.toLocaleString("default", { month: "long" });
-  console.log(month);
+ // console.log(month);
   const [users, setUsers] = useState([]);
   const [expenses, setExpenses] = useState([]);
   const [balance, setBalance] = useState({});
+  const [optExpense, setOptExpense] = useOptimistic(expenses);
 
   const [name, setName] = useState("");
-  const [date, setDate] = useState("2026-03-31");
+  const [date, setDate] = useState("");
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
   const [paidBy, setPaidBy] = useState("");
@@ -27,7 +26,7 @@ function App() {
   const [addEditButton, setAddEditButton] = useState(Boolean);
   const [editId, setEditId] = useState("");
   const [expenseButton, setExpensesButton] = useState("Add Expense");
-  const [editButton, setEditbutton] = useState("Edit");
+  const [editButton, setEditbutton] = useState("Update");
 
   const fetchData = async () => {
     const u = await fetch(`${Backend_URL}/user`);
@@ -50,51 +49,50 @@ function App() {
   }, []);
 
   const addUser = async () => {
-    try{
-    await fetch(`${Backend_URL}/user`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name }),
-    });
-    alert("User is added sucessfully");
-  }
-  catch(err){
-    alert("User is not added some error");
-  }
+    try {
+      await fetch(`${Backend_URL}/user`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name }),
+      });
+      alert("User is added sucessfully");
+    } catch (err) {
+      alert("User is not added some error");
+    }
 
     setName("");
     fetchData();
   };
 
   const addExpense = async () => {
-    try{
+    try {
       setExpensesButton("Adding ...");
-       setAddExpensebutton(true);
-  const addExpen = await fetch(`${Backend_URL}/expense`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        date,
-        title,
-        amount: Number(amount),
-        paidBy,
-      }),
-    });
-    setExpensesButton("Add Expense");
-    alert("Expense is added sucessful");
+      setOptExpense((prev) => [...prev, { date, title, amount, paidBy }]);
+      
+      setAddExpensebutton(true);
+      const addExpen = await fetch(`${Backend_URL}/expense`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          date,
+          title,
+          amount: Number(amount),
+          paidBy,
+        }),
+      });
+      setExpensesButton("Add Expense");
+        alert("Expense is added sucessful");
+      fetchData();
+      setTitle("");
+      setAmount("");
+      setAddExpensebutton(false);
+    } catch (err) {
+      alert("Some Error Please Try Again");
     }
-      catch(err){
-        alert("Some Error Please Try Again");
-      }
-
-    setTitle("");
-    setAmount("");
-    fetchData();
-     setAddExpensebutton(false);
   };
 
   const edit = async (data) => {
@@ -108,28 +106,27 @@ function App() {
   };
 
   const editExpense = async (id) => {
-    try{
-      setEditbutton("Editting ..");
-    const userId = id._id;
-    const edit = await fetch(`${Backend_URL}/edit/${userId}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        date,
-        title,
-        amount: Number(amount),
-        paidBy,
-      }),
-    });
-    const result = await edit.json();
-    setEditbutton("Edit");
-    //console.log(result);
-    alert("Expense is edited sucessfully");
-  }
-  catch(err){
+    try {
+      setEditbutton("Updating ..");
+      const userId = id._id;
+      const edit = await fetch(`${Backend_URL}/edit/${userId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          date,
+          title,
+          amount: Number(amount),
+          paidBy,
+        }),
+      });
+      const result = await edit.json();
+      setEditbutton("Update");
+      //console.log(result);
+      alert("Expense is edited sucessfully");
+    } catch (err) {
       console.log(err);
       alert("Expense is not edited try again");
-  }
+    }
     setAddExpensebutton(false);
     setTitle("");
     setAmount("");
@@ -178,17 +175,12 @@ function App() {
       <div id="inputField">
         <h3>Add Expense</h3>
 
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            addExpense();
-          }}
-        >
+        <form action={addExpense}>
           <div id="formSection">
+          
             <input
               type="date"
               value={date}
-              placeholder="set Date"
               onChange={(e) => {
                 setDate(e.target.value);
                 required;
@@ -200,6 +192,8 @@ function App() {
               onChange={(e) => setTitle(e.target.value)}
               required
             />
+            
+            
             <input
               type="number"
               placeholder="Amount"
@@ -207,7 +201,8 @@ function App() {
               onChange={(e) => setAmount(e.target.value)}
               required
             />
-            <select id="selectInput"
+            <select
+              id="selectInput"
               required
               value={paidBy}
               onChange={(e) => setPaidBy(e.target.value)}
@@ -222,6 +217,7 @@ function App() {
                 </option>
               ))}
             </select>
+            
           </div>
           <button type="submit" disabled={addExpensebutton}>
             {expenseButton}
@@ -250,7 +246,7 @@ function App() {
             </tr>
           </thead>
           <tbody>
-            {expenses.map((e) => (
+            {optExpense.map((e) => (
               <tr key={e._id}>
                 <td>{formatDate(e.date)}</td>
                 <td>{e.title}</td>
