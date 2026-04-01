@@ -27,6 +27,7 @@ function App() {
   const [editId, setEditId] = useState("");
   const [expenseButton, setExpensesButton] = useState("Add Expense");
   const [editButton, setEditbutton] = useState("Update");
+  const [userButton, setUserBotton] = useState(Boolean);
 
   const fetchData = async () => {
     const u = await fetch(`${Backend_URL}/user`);
@@ -50,6 +51,7 @@ function App() {
 
   const addUser = async () => {
     try {
+      setUserBotton(true);
       await fetch(`${Backend_URL}/user`, {
         method: "POST",
         headers: {
@@ -64,6 +66,7 @@ function App() {
 
     setName("");
     fetchData();
+    setUserBotton(false);
   };
 
   const addExpense = async () => {
@@ -168,7 +171,7 @@ function App() {
             onChange={(e) => setName(e.target.value)}
             placeholder="Enter name ...."
           />
-          <button onClick={addUser}>Add</button>
+          <button onClick={addUser}  disabled={userButton}>Add</button>
         </div>
       </div>
 
