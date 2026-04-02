@@ -8,7 +8,7 @@ function App() {
   //  const month = new Date().getMonth();
   const AllClearPas = import.meta.env.VITE_Allclear_Pass;
   const Backend_URL = import.meta.env.VITE_Backend_URL;
-
+  const userPass = import.meta.env.VITE_userPass; 
   const d = new Date();
   const month = d.toLocaleString("default", { month: "long" });
  // console.log(month);
@@ -50,7 +50,11 @@ function App() {
   }, []);
 
   const addUser = async () => {
+    const userPassIn = prompt("Enter Password");
+     if(userPass == userPassIn){
     try {
+    
+
       setUserBotton(true);
       await fetch(`${Backend_URL}/user`, {
         method: "POST",
@@ -63,6 +67,10 @@ function App() {
     } catch (err) {
       alert("User is not added some error");
     }
+  }
+  else{
+    alert("Enter Password is wrong try again !");
+  }
 
     setName("");
     fetchData();

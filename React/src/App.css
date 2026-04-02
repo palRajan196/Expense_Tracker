@@ -9,6 +9,9 @@
 
 #Heading{
   text-align: center;
+  background: linear-gradient(to right, blue, red);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
 }
 
 #addUserSection{
