@@ -3,7 +3,8 @@
   margin: 0;
   box-sizing: border-box;
   background-color: #e4e0e0;
-  color: black;
+  color: white;
+  background: #000;
   font-family: "Google Sans", sans-serif;
 }
 
@@ -58,6 +59,10 @@ button{
   margin-left: 20px;
   cursor: pointer;
 }
+button:hover{
+  background-color: rgb(56, 56, 190);
+  transform: translateY(1px);
+}
 input:focus{
   outline: none;
 }
@@ -74,13 +79,17 @@ input:focus{
 
 
 #editButton{
-  background-color: orange;
+  background-color:rgb(225, 11, 129);
   color: white;
   border-radius: 5px;
   border: none;
   padding: 5px 20px;
   margin-left: 20px;
   cursor: pointer;
+}
+#editButton:hover{
+  background-color: rgb(174, 14, 88);
+  transform: translateY(-1px);
 }
 
 #addUserSectionInput button:hover{
@@ -105,8 +114,6 @@ input:focus{
   background-color: white;
 }
 
-
-
 .styled-table{
   margin: 20px 0;
   padding: 10px 30px;
@@ -114,12 +121,14 @@ input:focus{
   border-collapse: collapse;
 }
 .styled-table thead th{
-  background-color: #c4c2c2;
+  background-color: #8d06c6;
+  color: white;
 }
 .styled-table tbody tr td{
   background-color: #f9f5f5;
   height: 30px;
   padding:0 10px;
+  color: #000;
   border-bottom: 1px solid rgb(206, 205, 205);
 }
 .styled-table tbody tr:nth-child(even) {
