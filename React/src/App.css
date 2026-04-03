@@ -4,12 +4,13 @@
   box-sizing: border-box;
   background-color: #e4e0e0;
   color: white;
-  background: #000;
+  background: black;
   font-family: "Google Sans", sans-serif;
 }
 
 #Heading{
   text-align: center;
+  margin: 20px 0;
   background: linear-gradient(to right, blue, red);
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;

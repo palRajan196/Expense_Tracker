@@ -1,6 +1,5 @@
-// ================= FRONTEND (React) =================
-
-// App.js (Using FETCH instead of Axios)
+import Greeting from './Greeting.jsx';
+import Shayari from './Shayari.jsx';
 import "./App.css";
 import React, { useEffect, useOptimistic, useState } from "react";
 
@@ -168,9 +167,18 @@ function App() {
     console.log(code, AllClearPas);
   };
 
+  const getQuote = async () => {
+  const res = await fetch("https://api.quotable.io/random");
+  const data = await res.json();
+  console.log(data);
+};
+
   return (
     <div>
-      <h1 id="Heading">Hi Garmi</h1>
+      
+      <h1><Greeting/></h1>
+      <Shayari/>
+      
       <div id="addUserSection">
         <h3>Add User</h3>
         <div id="addUserSectionInput">
