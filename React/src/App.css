@@ -67,6 +67,13 @@ button:hover{
 input:focus{
   outline: none;
 }
+#loadingBar{
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  margin: 20px 0;
+  height: 30px;
+}
 
 #addUserSectionInput button{
   background-color: rgb(68, 68, 248);

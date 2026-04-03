@@ -1,5 +1,6 @@
 import Greeting from './Greeting.jsx';
 import Shayari from './Shayari.jsx';
+import {BarLoader} from "react-spinners";
 import "./App.css";
 import React, { useEffect, useOptimistic, useState } from "react";
 
@@ -16,6 +17,7 @@ function App() {
   const [balance, setBalance] = useState({});
   const [optExpense, setOptExpense] = useOptimistic(expenses);
 
+  const [barLoader, setBarLoader] = useState(false);
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
   const [title, setTitle] = useState("");
@@ -29,6 +31,7 @@ function App() {
   const [userButton, setUserBotton] = useState(Boolean);
 
   const fetchData = async () => {
+    setBarLoader(true);
     const u = await fetch(`${Backend_URL}/user`);
     const uData = await u.json();
 
@@ -37,7 +40,8 @@ function App() {
 
     const b = await fetch(`${Backend_URL}/balance`);
     const bData = await b.json();
-
+    
+    setBarLoader(false);
     setUsers(uData);
     setExpenses(eData);
     setBalance(bData);
@@ -254,6 +258,7 @@ function App() {
 
       <div id="Table">
         <h3>Expenses of {month}</h3>
+        
         <table className="styled-table">
           <thead>
             <tr>
@@ -264,6 +269,7 @@ function App() {
               <th>Action</th>
             </tr>
           </thead>
+          
           <tbody>
             {optExpense.map((e) => (
               <tr key={e._id}>
@@ -281,6 +287,10 @@ function App() {
           </tbody>
         </table>
       </div>
+
+      <div id='loadingBar'>
+          <BarLoader color='rgb(225, 11, 129)' loading={barLoader}/>
+          </div>
 
       <div id="clearAll">
         <button onClick={clearAll}>Clear All</button>
